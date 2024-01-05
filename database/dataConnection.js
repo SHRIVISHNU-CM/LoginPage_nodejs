@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURL = "mongodb+srv://admin:mj8TZWhLZyt6YF2G@development.ejgwre5.mongodb.net/LoginForm?retryWrites=true&w=majority"
+const dbURL = process.env.DBURL
 
 const mongooseConnection = ()=>{
     try{
