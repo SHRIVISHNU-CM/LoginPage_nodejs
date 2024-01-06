@@ -5,6 +5,19 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Quicksand', sans-serif;
+
+}
+body{
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+.container{
+    border: 1px solid #aba5a5;
+    padding: 10px 20px;
+    border-radius: 16px;
+
 }
 h1{
     text-align: center;

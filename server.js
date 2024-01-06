@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const path = require('path');
 const app = express();
+const bcrypt = require('bcrypt')
 
 
 const mongooseConnection = require('./database/dataConnection');
@@ -29,22 +30,29 @@ app.get('/login',(req,res)=>{
 
 
 app.post('/signup', async (req, res) => {
-    const { name, password,email } = req.body;
+    
     try {
+        
         const userData = await User.find({
-            name
+            name:req.body.name
         });
-        if(name == userData.name){
+        if(req.body.name == userData){
             res.send('user Exists :Please try another username')
         }else{
-            await User.insertMany({name,password,email})
-            res.render('login',{title:"Login"})
+            const hassedPassword = await bcrypt.hash(req.body.password, 10);
+            const users = {
+                name: req.body.name,
+                email:req.body.email,
+                password: hassedPassword
+            }
+            await User.insertMany(users)
+            res.render('login',{title:"Login"});
+            res.status(200)
         }
-        
-        console.log(userData)
-        res.status(200).json(userData)
-    } catch (e) {
-        console.log(e)
+         
+    }catch(e){
+        console.log(e);
+        res.status(400);
     }
 
 });
@@ -52,14 +60,20 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
     
     const userData = await User.findOne({email:req.body.email})
-    if ( userData.password === req.body.password){
-        res.status(200).render('homepage', { title: userData.email});
-        
-    }else{
-        res.send("Password incorrect :Try again");
+    if ( userData == null){
+        res.send("email incorrect :Try again");
+            
+    }
+    try{
+        if(await bcrypt.compare(req.body.password,userData.password)){
+            res.status(200).render('homepage', { title: userData.name});
+        }else{
+            res.send('Please Password incorrect ').status(400)
+        }
+    }catch(e){
+        res.send('Password incorrect ').status(400)
     }
     
-    res.status(200).json(userData)
 })
 
 app.listen(PORT,()=>{console.log(`Server is connected ${PORT}`)});

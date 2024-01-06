@@ -1,46 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: aqua;
+    background: transparent;
     font-family: 'Quicksand', sans-serif;
+    color: #fff;
 }
-body{
+
+body {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url(./images/pexels-masood-aslami-19323966.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
-.container{
+
+.container {
+    backdrop-filter: blur(7.5px);
+    box-shadow: 5px 11px 47px rgba(0, 0, 0, 0.4);
     padding: 40px 60px;
     border-radius: 10px;
     width: min-content;
-    background: #F8F8F8;
-    border: solid #BDBDBD 1px;
-    box-shadow: 5px 11px 47px rgba(0, 0, 0, 0.4);
 }
-h1{
+
+h1 {
     text-align: center;
-    
+
 }
-.form-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-input{
+
+input {
     outline: none;
     border: 1px solid #cec8c8;
     padding: 10px;
     margin: 5px auto;
     border-radius: 5px;
 }
-.btn{
+
+.btn {
     margin: 5px auto;
     text-align: center;
 }
-button{
+
+button {
     background-color: #3c3cb9;
     padding: 10px 25px;
     color: #fff;

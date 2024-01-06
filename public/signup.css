@@ -4,8 +4,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: aqua;
+    background: transparent;
     font-family: 'Quicksand', sans-serif;
+    color: #fff;
 }
 
 body {
@@ -13,10 +14,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url(./images/pexels-maisie-kane-4842370.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 
 .container {
-    border: 1px solid #000;
+    backdrop-filter: blur(7.5px);
+    box-shadow: 5px 11px 47px rgba(0, 0, 0, 0.4);
     padding: 40px 60px;
     border-radius: 10px;
     width: min-content;
